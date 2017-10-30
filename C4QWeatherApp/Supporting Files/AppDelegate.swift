@@ -13,9 +13,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
-
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    
+    let router = AerisRouter(zipCode: "11101")
+    AerisAPIClient.request(router) { (result) in
+      switch result {
+      case .success(let forecast):
+        let mainViewModel = MainViewModel(forecast: forecast)
+        print("success")
+      case .failure(let error):
+        print("ERROR - AppDelegate: \(error.localizedDescription)")
+      }
+    }
+    
     return true
   }
 
