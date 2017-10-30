@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5DB31A501FA6B80100E26727 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A4F1FA6B80100E26727 /* AppDelegate.swift */; };
-		5DB31A521FA6B80100E26727 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A511FA6B80100E26727 /* ViewController.swift */; };
 		5DB31A551FA6B80100E26727 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB31A531FA6B80100E26727 /* Main.storyboard */; };
 		5DB31A571FA6B80100E26727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DB31A561FA6B80100E26727 /* Assets.xcassets */; };
 		5DB31A5A1FA6B80100E26727 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB31A581FA6B80100E26727 /* LaunchScreen.storyboard */; };
@@ -22,12 +21,12 @@
 		5DB4C7311FA716BA00112E23 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C7301FA716BA00112E23 /* LoaderViewController.swift */; };
 		5DB4C7341FA7197300112E23 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C7331FA7197300112E23 /* Constants.swift */; };
 		5DB4C7361FA724F400112E23 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C7351FA724F400112E23 /* ForecastViewController.swift */; };
+		5DB4C7391FA73DB800112E23 /* DayForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C7381FA73DB800112E23 /* DayForecastView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5DB31A4C1FA6B80100E26727 /* C4QWeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = C4QWeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DB31A4F1FA6B80100E26727 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5DB31A511FA6B80100E26727 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5DB31A541FA6B80100E26727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5DB31A561FA6B80100E26727 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DB31A591FA6B80100E26727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		5DB4C7301FA716BA00112E23 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		5DB4C7331FA7197300112E23 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5DB4C7351FA724F400112E23 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
+		5DB4C7381FA73DB800112E23 /* DayForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayForecastView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +75,7 @@
 			children = (
 				5DB31A621FA6B81900E26727 /* Model */,
 				5DB31A631FA6B81F00E26727 /* View Model */,
+				5DB4C7371FA73D8A00112E23 /* View */,
 				5DB4C7291FA70CB200112E23 /* Controller */,
 				5DB31A641FA6B83000E26727 /* Services */,
 				5DB31A611FA6B81100E26727 /* Secrets */,
@@ -121,7 +122,6 @@
 			isa = PBXGroup;
 			children = (
 				5DB31A4F1FA6B80100E26727 /* AppDelegate.swift */,
-				5DB31A511FA6B80100E26727 /* ViewController.swift */,
 				5DB31A531FA6B80100E26727 /* Main.storyboard */,
 				5DB31A561FA6B80100E26727 /* Assets.xcassets */,
 				5DB31A581FA6B80100E26727 /* LaunchScreen.storyboard */,
@@ -146,6 +146,14 @@
 				5DB4C7331FA7197300112E23 /* Constants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		5DB4C7371FA73D8A00112E23 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5DB4C7381FA73DB800112E23 /* DayForecastView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,7 +229,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DB31A521FA6B80100E26727 /* ViewController.swift in Sources */,
 				5DB31A6B1FA6BBC400E26727 /* Forecast.swift in Sources */,
 				5DB31A6F1FA6BBD100E26727 /* Secrets.swift in Sources */,
 				5DB4C72F1FA7126600112E23 /* AppController.swift in Sources */,
@@ -229,6 +236,7 @@
 				5DB4C7341FA7197300112E23 /* Constants.swift in Sources */,
 				5DB31A6D1FA6BBCA00E26727 /* AerisAPIClient.swift in Sources */,
 				5DB31A6E1FA6BBCD00E26727 /* Networking.swift in Sources */,
+				5DB4C7391FA73DB800112E23 /* DayForecastView.swift in Sources */,
 				5DB31A501FA6B80100E26727 /* AppDelegate.swift in Sources */,
 				5DB31A6C1FA6BBC700E26727 /* ForecastViewModel.swift in Sources */,
 				5DB4C7361FA724F400112E23 /* ForecastViewController.swift in Sources */,

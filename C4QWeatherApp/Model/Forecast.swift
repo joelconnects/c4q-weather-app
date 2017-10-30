@@ -11,7 +11,7 @@ import Foundation
 struct Forecast: Decodable {
   
   // MARK: - Properties
-  let days: [Daily]
+  let days: [Day]
   
   // MARK: - Coding keys
   enum CodingKeys: String, CodingKey {
@@ -26,13 +26,13 @@ struct Forecast: Decodable {
   }
   
   // MARK: - Daily forecast
-  struct Daily: Decodable {
+  struct Day: Decodable {
     
     // MARK: - Properties
-    let minTempF: String
-    let maxTempF: String
-    let minTempC: String
-    let maxTempC: String
+    let minTempF: Int
+    let maxTempF: Int
+    let minTempC: Int
+    let maxTempC: Int
     let date: String
     let icon: String
     
@@ -48,7 +48,7 @@ struct Forecast: Decodable {
     
     // MARK: - Initialization
     init(from decoder: Decoder) throws {
-      let container = try decoder.container(keyedBy: Daily.CodingKeys.self)
+      let container = try decoder.container(keyedBy: Day.CodingKeys.self)
       let minTempF = try container.decode(Int.self, forKey: .minTempF)
       let maxTempF = try container.decode(Int.self, forKey: .maxTempF)
       let minTempC = try container.decode(Int.self, forKey: .minTempC)
@@ -56,10 +56,10 @@ struct Forecast: Decodable {
       let date = try container.decode(String.self, forKey: .date)
       let icon = try container.decode(String.self, forKey: .icon)
       
-      self.minTempF = String(minTempF)
-      self.maxTempF = String(maxTempF)
-      self.minTempC = String(minTempC)
-      self.maxTempC = String(maxTempC)
+      self.minTempF = minTempF
+      self.maxTempF = maxTempF
+      self.minTempC = minTempC
+      self.maxTempC = maxTempC
       self.date = date
       self.icon = icon
     }
@@ -69,7 +69,7 @@ struct Forecast: Decodable {
   private struct Response: Decodable {
     
     // MARK: - Properties
-    let periods: [Daily]
+    let periods: [Day]
     
     // MARK: - Coding keys
     enum CodingKeys : String, CodingKey {
@@ -82,9 +82,9 @@ struct Forecast: Decodable {
       let nestedContainer = try unkeyedContainer.nestedContainer(keyedBy: Response.CodingKeys.self)
       var periodsArray = try nestedContainer.nestedUnkeyedContainer(forKey: .periods)
       
-      var periods: [Daily] = []
+      var periods: [Day] = []
       while (!periodsArray.isAtEnd) {
-        let daily = try periodsArray.decode(Daily.self)
+        let daily = try periodsArray.decode(Day.self)
         periods.append(daily)
       }
       

@@ -21,13 +21,7 @@ class AppController: UIViewController {
     configureBackgroundImageView()
     configureContainerView()
     loadInitialViewController()
-//    addNotificationObservers()
     loadForecastViewController()
-  }
-
-  
-  deinit {
-//    removeNotificationObservers()
   }
   
   // MARK: View configuration
@@ -67,25 +61,6 @@ class AppController: UIViewController {
       }
     }
   }
-  
-//  // MARK: - Notifications
-//  private func addNotificationObservers() {
-//    NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .loaderViewControllerViewAppeared, object: nil)
-//  }
-//
-//  private func removeNotificationObservers() {
-//    NotificationCenter.default.removeObserver(self, name: .loaderViewControllerViewAppeared, object: nil)
-//  }
-//
-//  @objc
-//  private func handleNotification(_ notification: Notification) {
-//    switch notification.name {
-//    case .loaderViewControllerViewAppeared:
-//      print("initial view appeared")
-//    default:
-//      print("default")
-//    }
-//  }
   
   // MARK: Helpers
   private func getForecast(completion: @escaping (ForecastViewModel?) -> ()) {

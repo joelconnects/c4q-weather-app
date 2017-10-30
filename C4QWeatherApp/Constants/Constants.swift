@@ -14,7 +14,3 @@ struct Theme {
     static let AppBackgroundInverted = UIImage(named: "image-app-background-inverted")!
   }
 }
-
-extension Notification.Name {
-  
-}
