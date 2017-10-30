@@ -33,7 +33,8 @@ struct Forecast: Decodable {
     let maxTempF: String
     let minTempC: String
     let maxTempC: String
-    let timestamp: String
+    let date: String
+    let icon: String
     
     // MARK: - Coding keys
     enum CodingKeys: String, CodingKey {
@@ -41,7 +42,8 @@ struct Forecast: Decodable {
       case maxTempF
       case minTempC
       case maxTempC
-      case timestamp = "dateTimeISO"
+      case date = "dateTimeISO"
+      case icon
     }
     
     // MARK: - Initialization
@@ -51,13 +53,15 @@ struct Forecast: Decodable {
       let maxTempF = try container.decode(Int.self, forKey: .maxTempF)
       let minTempC = try container.decode(Int.self, forKey: .minTempC)
       let maxTempC = try container.decode(Int.self, forKey: .maxTempC)
-      let timestamp = try container.decode(String.self, forKey: .timestamp)
+      let date = try container.decode(String.self, forKey: .date)
+      let icon = try container.decode(String.self, forKey: .icon)
       
       self.minTempF = String(minTempF)
       self.maxTempF = String(maxTempF)
       self.minTempC = String(minTempC)
       self.maxTempC = String(maxTempC)
-      self.timestamp = timestamp
+      self.date = date
+      self.icon = icon
     }
   }
   

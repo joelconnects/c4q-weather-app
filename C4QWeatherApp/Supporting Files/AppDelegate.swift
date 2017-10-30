@@ -14,16 +14,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    let appController = AppController()
     
-    let router = AerisRouter(zipCode: "11101")
-    AerisAPIClient.request(router) { (result) in
-      switch result {
-      case .success(let forecast):
-        let mainViewModel = MainViewModel(forecast: forecast)
-        print("success")
-      case .failure(let error):
-        print("ERROR - AppDelegate: \(error.localizedDescription)")
-      }
+    let frame = UIScreen.main.bounds
+    window = UIWindow(frame: frame)
+    
+    if let window = window {
+      window.rootViewController = appController
+      window.makeKeyAndVisible()
     }
     
     return true
