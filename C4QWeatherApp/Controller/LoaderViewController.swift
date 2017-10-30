@@ -17,15 +17,22 @@ class LoaderViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    let blurEffect = UIBlurEffect(style: .dark)
+    let effectView = UIVisualEffectView(effect: blurEffect)
+    effectView.frame = view.frame
+    effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    view.addSubview(effectView)
+    
     view.addSubview(activityIndicator)
     activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -60).isActive = true
+    activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     
     activityIndicator.startAnimating()
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    NotificationCenter.default.post(name: .loaderViewControllerViewAppeared, object: nil)
+  override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    activityIndicator.stopAnimating()
   }
 }

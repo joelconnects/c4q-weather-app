@@ -13,7 +13,7 @@
 		5DB31A571FA6B80100E26727 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DB31A561FA6B80100E26727 /* Assets.xcassets */; };
 		5DB31A5A1FA6B80100E26727 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB31A581FA6B80100E26727 /* LaunchScreen.storyboard */; };
 		5DB31A6B1FA6BBC400E26727 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A661FA6B89D00E26727 /* Forecast.swift */; };
-		5DB31A6C1FA6BBC700E26727 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A671FA6B8A900E26727 /* MainViewModel.swift */; };
+		5DB31A6C1FA6BBC700E26727 /* ForecastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A671FA6B8A900E26727 /* ForecastViewModel.swift */; };
 		5DB31A6D1FA6BBCA00E26727 /* AerisAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A691FA6B8CB00E26727 /* AerisAPIClient.swift */; };
 		5DB31A6E1FA6BBCD00E26727 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A681FA6B8CB00E26727 /* Networking.swift */; };
 		5DB31A6F1FA6BBD100E26727 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB31A6A1FA6B8DF00E26727 /* Secrets.swift */; };
@@ -21,6 +21,7 @@
 		5DB4C72F1FA7126600112E23 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C72E1FA7126600112E23 /* AppController.swift */; };
 		5DB4C7311FA716BA00112E23 /* LoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C7301FA716BA00112E23 /* LoaderViewController.swift */; };
 		5DB4C7341FA7197300112E23 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C7331FA7197300112E23 /* Constants.swift */; };
+		5DB4C7361FA724F400112E23 /* ForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB4C7351FA724F400112E23 /* ForecastViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,13 +33,14 @@
 		5DB31A591FA6B80100E26727 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DB31A5B1FA6B80100E26727 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DB31A661FA6B89D00E26727 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
-		5DB31A671FA6B8A900E26727 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		5DB31A671FA6B8A900E26727 /* ForecastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewModel.swift; sourceTree = "<group>"; };
 		5DB31A681FA6B8CB00E26727 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		5DB31A691FA6B8CB00E26727 /* AerisAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AerisAPIClient.swift; sourceTree = "<group>"; };
 		5DB31A6A1FA6B8DF00E26727 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		5DB4C72E1FA7126600112E23 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		5DB4C7301FA716BA00112E23 /* LoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderViewController.swift; sourceTree = "<group>"; };
 		5DB4C7331FA7197300112E23 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5DB4C7351FA724F400112E23 /* ForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +103,7 @@
 		5DB31A631FA6B81F00E26727 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
-				5DB31A671FA6B8A900E26727 /* MainViewModel.swift */,
+				5DB31A671FA6B8A900E26727 /* ForecastViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -133,6 +135,7 @@
 			children = (
 				5DB4C72E1FA7126600112E23 /* AppController.swift */,
 				5DB4C7301FA716BA00112E23 /* LoaderViewController.swift */,
+				5DB4C7351FA724F400112E23 /* ForecastViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -227,7 +230,8 @@
 				5DB31A6D1FA6BBCA00E26727 /* AerisAPIClient.swift in Sources */,
 				5DB31A6E1FA6BBCD00E26727 /* Networking.swift in Sources */,
 				5DB31A501FA6B80100E26727 /* AppDelegate.swift in Sources */,
-				5DB31A6C1FA6BBC700E26727 /* MainViewModel.swift in Sources */,
+				5DB31A6C1FA6BBC700E26727 /* ForecastViewModel.swift in Sources */,
+				5DB4C7361FA724F400112E23 /* ForecastViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

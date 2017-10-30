@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  ForecastViewModel.swift
 //  C4QWeatherApp
 //
 //  Created by Joel Bell on 10/29/17.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MainViewModel {
+struct ForecastViewModel {
   
   // MARK: - Properties
   let days: [Forecast.Daily]

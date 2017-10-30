@@ -14,7 +14,6 @@ class AppController: UIViewController {
   private var containerView: UIView!
   private var actingViewController: UIViewController!
   private var backgroundImageView: UIImageView!
-  private var initialControllerViewAppeared: Bool = false
   
   // MARK: - View lifecycle
   override func viewDidLoad() {
@@ -22,11 +21,13 @@ class AppController: UIViewController {
     configureBackgroundImageView()
     configureContainerView()
     loadInitialViewController()
-    addNotificationObservers()
+//    addNotificationObservers()
+    loadForecastViewController()
   }
+
   
   deinit {
-    removeNotificationObservers()
+//    removeNotificationObservers()
   }
   
   // MARK: View configuration
@@ -58,40 +59,52 @@ class AppController: UIViewController {
     actingViewController.didMove(toParentViewController: self)
   }
   
-  // MARK: - Notifications
-  private func addNotificationObservers() {
-    NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .loaderViewControllerViewAppeared, object: nil)
-  }
-  
-  private func removeNotificationObservers() {
-    NotificationCenter.default.removeObserver(self, name: .loaderViewControllerViewAppeared, object: nil)
-  }
-  
-  @objc
-  private func handleNotification(_ notification: Notification) {
-    switch notification.name {
-    case .loaderViewControllerViewAppeared:
-      print("initial view appeared")
-    default:
-      print("default")
-    }
-  }
-  
-  // MARK: Helpers
-  private func loadForecastView() {
-    let router = AerisRouter(zipCode: "11101")
-    AerisAPIClient.request(router) { (result) in
-      switch result {
-      case .success(let forecast):
-        let mainViewModel = MainViewModel(forecast: forecast)
-        print("success")
-      case .failure(let error):
-        print("ERROR - AppDelegate: \(error.localizedDescription)")
+  private func loadForecastViewController() {
+    getForecast { forecastViewModel in
+      if let viewModel = forecastViewModel {
+        let forecastViewController = ForecastViewController(viewModel: viewModel)
+        self.switchTo(forecastViewController)
       }
     }
   }
   
-  private func switchTo(_ viewController: UIViewController, _ completion: () -> ()) {
+//  // MARK: - Notifications
+//  private func addNotificationObservers() {
+//    NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: .loaderViewControllerViewAppeared, object: nil)
+//  }
+//
+//  private func removeNotificationObservers() {
+//    NotificationCenter.default.removeObserver(self, name: .loaderViewControllerViewAppeared, object: nil)
+//  }
+//
+//  @objc
+//  private func handleNotification(_ notification: Notification) {
+//    switch notification.name {
+//    case .loaderViewControllerViewAppeared:
+//      print("initial view appeared")
+//    default:
+//      print("default")
+//    }
+//  }
+  
+  // MARK: Helpers
+  private func getForecast(completion: @escaping (ForecastViewModel?) -> ()) {
+    let router = AerisRouter(zipCode: "11101")
+    AerisAPIClient.request(router) { result in
+      DispatchQueue.main.async {
+        switch result {
+        case .success(let forecast):
+          completion(ForecastViewModel(forecast: forecast))
+        case .failure(let error):
+          // TODO: Set up retry flow
+          self.presentDefaultAlert(title: "Uh oh!", message: error.localizedDescription)
+          completion(nil)
+        }
+      }
+    }
+  }
+  
+  private func switchTo(_ viewController: UIViewController) {
     let exitingViewController = actingViewController
     exitingViewController?.willMove(toParentViewController: nil)
     
@@ -100,12 +113,23 @@ class AppController: UIViewController {
     
     containerView.addSubview(actingViewController.view)
     actingViewController.view.frame = containerView.bounds
-    actingViewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    
+    actingViewController.view.translatesAutoresizingMaskIntoConstraints = false
+    actingViewController.view.centerXAnchor.constraint(equalTo: containerView.centerXAnchor).isActive = true
+    actingViewController.view.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+    let widthConstraint = actingViewController.view.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width * 2)
+    let heightConstraint = actingViewController.view.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height * 2)
+    widthConstraint.isActive = true
+    heightConstraint.isActive = true
+    containerView.layoutIfNeeded()
     
     actingViewController.view.alpha = 0
     
-    UIView.animate(withDuration: 0.5, animations: {
-      
+    widthConstraint.constant = UIScreen.main.bounds.width
+    heightConstraint.constant = UIScreen.main.bounds.height
+    
+    UIView.animate(withDuration: 0.4, animations: {
+      self.containerView.layoutIfNeeded()
       self.actingViewController.view.alpha = 1
       exitingViewController?.view.alpha = 0
       
@@ -114,5 +138,12 @@ class AppController: UIViewController {
       exitingViewController?.removeFromParentViewController()
       self.actingViewController.didMove(toParentViewController: self)
     }
+  }
+  
+  private func presentDefaultAlert(title: String, message: String) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let OKAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    alertController.addAction(OKAction)
+    present(alertController, animated: true, completion: nil)
   }
 }
